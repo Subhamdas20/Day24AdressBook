@@ -139,12 +139,15 @@ public class RunAddressBook {
                     }
                 case 4:
                     if (choose_AddressBook == 1) {
+                        book1.sortByFirstName();
                         book1.showContacts();
                         break;
                     } else if (choose_AddressBook == 2) {
+                        book2.sortByFirstName();
                         book2.showContacts();
                         break;
                     } else if (choose_AddressBook == 3) {
+                        book3.sortByFirstName();
                         book3.showContacts();
                         break;
                     }
@@ -158,6 +161,7 @@ public class RunAddressBook {
                 case 7:
                     searchNumberOfPerson();
                     break;
+                case 8:
                 default:
                     System.out.println("Invalid Input");
                     break;

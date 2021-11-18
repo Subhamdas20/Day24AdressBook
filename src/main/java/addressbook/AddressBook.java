@@ -1,6 +1,7 @@
 package addressbook;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class AddressBook {
@@ -103,11 +104,22 @@ public class AddressBook {
      */
     public void showContacts() {
         int i = 1;
+
         for (Contacts contact : contact_Details) {
             System.out.println("Details  of contact number " + i + " is");
             System.out.println(contact.toString());
             i++;
         }
+    }
+    public void sortByFirstName() {
+        Collections.sort(contact_Details, Sort.compareFirstName);
+    }
+    public void sortCity() {
+        Collections.sort(contact_Details, Sort.compareCity);
+    }
+
+    public void sortState() {
+        Collections.sort(contact_Details, Sort.compareState);
     }
 
 }

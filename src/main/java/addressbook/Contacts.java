@@ -1,6 +1,8 @@
 package addressbook;
 
-public class Contacts {
+import java.util.List;
+
+public class Contacts  {
 
     private String firstName, lastName, address, city, state, emailId;
     private int zipCode;
