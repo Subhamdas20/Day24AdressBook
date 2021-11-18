@@ -111,13 +111,21 @@ public class AddressBook {
             i++;
         }
     }
+/**
+ * sort by first name
+ * */
     public void sortByFirstName() {
         Collections.sort(contact_Details, Sort.compareFirstName);
     }
+/**
+ * sort by city
+ * */
     public void sortCity() {
         Collections.sort(contact_Details, Sort.compareCity);
     }
-
+/**
+ * sort by state
+ * */
     public void sortState() {
         Collections.sort(contact_Details, Sort.compareState);
     }
