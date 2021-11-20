@@ -1,5 +1,8 @@
 package addressbook;
 
+import org.json.simple.parser.ParseException;
+
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -74,7 +77,7 @@ public class RunAddressBook {
         } else System.out.println("Enter 1 or 2 ");
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ParseException {
 
         AddressBook book1 = new AddressBook();
         AddressBook book2 = new AddressBook();
@@ -162,6 +165,11 @@ public class RunAddressBook {
                     searchNumberOfPerson();
                     break;
                 case 8:
+                    if (choose_AddressBook == 1) book1.writeFile("E:\\Day24AddressBook\\src\\main\\resources\\AddressBook1.json");
+                    else if (choose_AddressBook == 2) book2.writeFile("E:\\Day24AddressBook\\src\\main\\resources\\AddressBook2.json");
+                    else if (choose_AddressBook == 3) book3.writeFile("E:\\Day24AddressBook\\src\\main\\resources\\AddressBook3.json");
+                    else System.out.println("Option not found");
+                    break;
                 default:
                     System.out.println("Invalid Input");
                     break;

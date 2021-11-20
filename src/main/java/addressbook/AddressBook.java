@@ -1,5 +1,14 @@
 package addressbook;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -43,6 +52,7 @@ public class AddressBook {
             System.out.println(e.getMessage());
         }
     }
+
 
     /**
      * used to editContacts
@@ -111,23 +121,54 @@ public class AddressBook {
             i++;
         }
     }
-/**
- * sort by first name
- * */
+
+    /**
+     * sort by first name
+     */
     public void sortByFirstName() {
         Collections.sort(contact_Details, Sort.compareFirstName);
     }
-/**
- * sort by city
- * */
+
+    /**
+     * sort by city
+     */
     public void sortCity() {
         Collections.sort(contact_Details, Sort.compareCity);
     }
-/**
- * sort by state
- * */
+
+    /**
+     * sort by state
+     */
     public void sortState() {
         Collections.sort(contact_Details, Sort.compareState);
     }
 
+    public void writeFile(String file) throws IOException, ParseException {
+        JSONArray arr = new JSONArray();
+        FileWriter writer = new FileWriter(file);
+        try {
+            for (Contacts contact : contact_Details) {
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put("First_Name ", contact.getFirstName());
+                jsonObject.put("Last_Name ", contact.getLastName());
+                jsonObject.put("Address ", contact.getAddress());
+                jsonObject.put("City ", contact.getCity());
+                jsonObject.put("State ", contact.getState());
+                jsonObject.put("EmailId ", contact.getEmailId());
+                jsonObject.put("Zip code ", contact.getZipCode());
+                jsonObject.put("Phone Number ", contact.getPhoneNumber());
+                arr.add(jsonObject);
+
+            }
+            writer.write(arr.toJSONString());
+            writer.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
+
+
