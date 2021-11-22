@@ -94,7 +94,8 @@ public class RunAddressBook {
             System.out.println("Enter 1 to for AddressBook1 2 for AddressBook2 and 3 for AddressBook3");
             int choose_AddressBook = sc.nextInt();
             System.out.println("Enter 1 to add contact \nEnter 2 to edit details of contacts \nEnter 3 for deleting contact \nEnter 4 for showing details of contacts" +
-                    "\nEnter 5 to search person across multiple addressBook \nEnter 6 to search by city or state\nEnter 7 to search number of contacts");
+                    "\nEnter 5 to search person across multiple addressBook \nEnter 6 to search by city or state\nEnter 7 to search number of contacts\nEnter 8 to write to json file" +
+                    "\nEnter 9 for writing to csv file");
             System.out.println(".......................................");
             int userChoice = sc.nextInt();
             switch (userChoice) {
@@ -165,10 +166,23 @@ public class RunAddressBook {
                     searchNumberOfPerson();
                     break;
                 case 8:
-                    if (choose_AddressBook == 1) book1.writeFile("E:\\Day24AddressBook\\src\\main\\resources\\AddressBook1.json");
-                    else if (choose_AddressBook == 2) book2.writeFile("E:\\Day24AddressBook\\src\\main\\resources\\AddressBook2.json");
-                    else if (choose_AddressBook == 3) book3.writeFile("E:\\Day24AddressBook\\src\\main\\resources\\AddressBook3.json");
+                    if (choose_AddressBook == 1)
+                        book1.writeFile("E:\\Day24AddressBook\\src\\main\\resources\\AddressBook1.json");
+                    else if (choose_AddressBook == 2)
+                        book2.writeFile("E:\\Day24AddressBook\\src\\main\\resources\\AddressBook2.json");
+                    else if (choose_AddressBook == 3)
+                        book3.writeFile("E:\\Day24AddressBook\\src\\main\\resources\\AddressBook3.json");
                     else System.out.println("Option not found");
+                    break;
+                case 9:
+                    if (choose_AddressBook == 1) {
+                        book1.writeCSVFile("E:\\Day24AddressBook\\src\\main\\resources\\AddressBook1.csv");
+                    } else if (choose_AddressBook == 2)
+                        book2.writeCSVFile("E:\\Day24AddressBook\\src\\main\\resources\\AddressBook2.csv");
+                    else if (choose_AddressBook == 3)
+                        book3.writeCSVFile("E:\\Day24AddressBook\\src\\main\\resources\\AddressBook3.csv");
+                    else System.out.println("Option not found");
+
                     break;
                 default:
                     System.out.println("Invalid Input");

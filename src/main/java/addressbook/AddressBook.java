@@ -1,16 +1,18 @@
 package addressbook;
 
+import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
+import com.opencsv.exceptions.CsvException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
 public class AddressBook {
@@ -158,7 +160,6 @@ public class AddressBook {
                 jsonObject.put("Zip code ", contact.getZipCode());
                 jsonObject.put("Phone Number ", contact.getPhoneNumber());
                 arr.add(jsonObject);
-
             }
             writer.write(arr.toJSONString());
             writer.close();
@@ -168,7 +169,49 @@ public class AddressBook {
         }
     }
 
+    public void writeCSVFile(String file) {
+        File fileWrite = new File(file);
+        try {
 
-}
+            FileWriter outputfile = new FileWriter(fileWrite);
+            CSVWriter writer = new CSVWriter(outputfile);
+
+            for (Contacts contact : contact_Details) {
+                String[] data = {contact.getFirstName(), contact.getLastName(), contact.getAddress(),
+                        contact.getState(), contact.getCity(), String.valueOf(contact.getPhoneNumber()),
+                        String.valueOf(contact.getZipCode())};
+                writer.writeNext(data);
+            }
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void readCSVFile(String file){
+
+        try(Reader read = Files.newBufferedReader(Paths.get(file));
+            CSVReader obj = new CSVReader(read);
+        ){
+
+            List<String[]> readcsv =  obj.readAll();
+            for (String[] nextRecord:readcsv) {
+                System.out.println("First Name : "+nextRecord[0]);
+                System.out.println("Last Name : "+nextRecord[1]);
+                System.out.println("Address : "+nextRecord[2]);
+                System.out.println("City : "+nextRecord[3]);
+                System.out.println("State : "+nextRecord[3]);
+                System.out.println("EmailId : "+nextRecord[3]);
+                System.out.println("Phone Number : "+nextRecord[3]);
+                System.out.println("Zip code : "+nextRecord[3]);
+
+            }
+
+        } catch (IOException | CsvException e) {
+            e.printStackTrace();
+        }
+    }
+
+    }
+
 
 
